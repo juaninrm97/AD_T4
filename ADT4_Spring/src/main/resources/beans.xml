@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- Bean para Persona (Propietario) -->
+    <bean id="personaPropietario" class="es.studium.Practica4.Persona">
+        <constructor-arg value="Juan Manuel Rodríguez Martín"/> <!-- Propietario con nombre y apellidos -->
+    </bean>
+
+    <!-- Bean para Persona en la primera habitación -->
+    <bean id="personaHabitacion1" class="es.studium.Practica4.Persona">
+        <constructor-arg value="Carlos López Pérez"/> <!-- Persona 1 en la primera habitación -->
+    </bean>
+
+    <!-- Bean para Persona en la segunda habitación -->
+    <bean id="personaHabitacion2" class="es.studium.Practica4.Persona">
+        <constructor-arg value="María Fernández Gómez"/> <!-- Persona 2 en la segunda habitación -->
+    </bean>
+
+    <!-- Bean para la primera habitación -->
+    <bean id="habitacion1" class="es.studium.Practica4.Habitacion">
+        <property name="nombreHabitacion" value="Habitación Principal"/>
+        <property name="pisoHabitacion" value="1"/>
+        <property name="tieneVentana" value="true"/>
+        <property name="persona" ref="personaHabitacion1"/> <!-- Persona en la habitación 1 -->
+    </bean>
+
+    <!-- Bean para la segunda habitación -->
+    <bean id="habitacion2" class="es.studium.Practica4.Habitacion">
+        <property name="nombreHabitacion" value="Habitación Secundaria"/>
+        <property name="pisoHabitacion" value="2"/>
+        <property name="tieneVentana" value="false"/>
+        <property name="persona" ref="personaHabitacion2"/> <!-- Persona en la habitación 2 -->
+    </bean>
+
+    <!-- Bean para Casa -->
+    <bean id="casa" class="es.studium.Practica4.Casa">
+        <property name="nombreCasa" value="Mi Casa"/>
+        <property name="habitaciones">
+            <list>
+                <ref bean="habitacion1"/> <!-- Usamos dos beans de tipo Habitacion -->
+                <ref bean="habitacion2"/>
+            </list>
+        </property>
+        <property name="propietario" ref="personaPropietario"/> <!-- Propietario de la casa -->
+    </bean>
+
+</beans>
